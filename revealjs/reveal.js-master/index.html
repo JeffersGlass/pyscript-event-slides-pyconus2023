@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/serif.css">
+		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/vs.css">
+		<style>
+			section .left {
+				color: #333;
+				text-align: left;
+				margin-left: 2rem;
+			}
+
+			section h2 {
+				text-decoration: underline;
+			}
+
+			.twocolumn {
+				display: grid; 
+				grid-template-columns: repeat(2, minmax(0, 1fr)); 
+			}
+
+			.code {
+				display: inline; 
+				padding-left: 0.5rem;
+				padding-right: 0.5rem; 
+				background-color: hsl(220, 13%, 85%); 
+				font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
+				border-radius: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section><h1>Events</h1></section>
+
+				<section class="left">
+					<h2>Events</h2>
+					<p>User and page actions emit Event objects</p>
+					<div class="twocolumn">
+						<div>
+							<p>User-triggered Events</p>
+							<ul>
+								<li>Click</li>
+								<li>Hover</li>
+								<li>Focus</li>
+								<li>Value Change</li>
+								<li>Gamepad Input</li>
+								<li>Form Submit</li>
+								<li>...</li>
+							</ul>
+						</div>
+						<div>
+							<p>"Lifecycle" Events</p>
+							<ul>
+								<li>Load progress</li>
+								<li>Animation Events</li>
+								<li>DOM Mutation</li>
+								<li>...</li>
+							</ul>
+						</div>
+					</div>
+					<p>Goal: "Do Something When An Event Happens"</p>
+				</section>
+
+				<section>
+					<h2 class="">4 Ways To React to Events in PyScript</h2>
+					<p class="space-x-12"><span class="">2 in HTML</span><span class="">2 in Python</span></p>
+				</section>
+
+				<section>
+					<h2>Event Listener</h2>
+				</section>
+
+				<section>
+					<h2>Code Runner</h2>
+				</section>
+
+				<section>
+					<h2><code class="code">@when</code> decorator</h2>
+				</section>
+
+				<section>
+					<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				center: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
