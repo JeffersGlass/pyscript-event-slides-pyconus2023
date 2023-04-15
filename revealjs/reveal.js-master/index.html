@@ -9,15 +9,19 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/serif.css">
-		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+		<link href="css/tailwind2.min.css" rel="stylesheet">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/vs.css">
 		<style>
-			section .left {
+			section {
 				color: #333;
+			}
+
+
+			.left{
+				left: 5%;
 				text-align: left;
-				margin-left: 2rem;
 			}
 
 			section h2 {
@@ -37,12 +41,22 @@
 				font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
 				border-radius: 1rem;
 			}
+
+			.inline-code{
+				font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
+			}
 		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 				<section><h1>Events</h1></section>
+				<section>
+					<div class="grid grid-cols-1 mx-12 space-y-8">
+						<button class="p-6 text-6xl bg-gray-100 border-2 border-gray-600 rounded-lg">Hover Over Me</button>
+						<br><input type="text" placeholder="Type in Me" class="p-2 border-2 border-gray-600 rounded-lg">
+					</div>
+				</section>
 
 				<section class="left">
 					<h2>Events</h2>
@@ -79,19 +93,182 @@
 				</section>
 
 				<section>
-					<h2>Event Listener</h2>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<p>HTML Attribute is <code class="code left">py-[event]</code></p>
+						<p>Value is the <span class="font-semibold">name of a Callable</span></p>
+						<div class="fragment">
+							<pre><code class="text-3xl" data-trim>
+								<button py-click="say_hi">Hello!</button>
+							</code></pre>
+							<pre><code class="text-3xl python" data-trim>
+									<py-script>
+										def say_hi():
+											print("Hi there!")
+									</py-script>
+							</code></pre>
+							<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Hello!</button>
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<p>Callable can have 0 or 1 parameters</p>
+						<p>If the Callable takes 1 parameter, it will be passed the Event object</p>
+						<pre><code class="text-3xl html" data-trim>
+							<input type="text" py-change="validate">
+						</code></pre>
+						<pre><code class="text-3xl python" data-trim>
+								<py-script>
+									def validate(event):
+										... # XXXXXXXXXXXXXXXXXXXXXXXX
+								</py-script>
+						</code></pre>
+						<input type="text" class="p-1 border-2 border-gray-600">
+					</section>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<p>XXXXXXXXXXXX MORE EXAMPLES??</p>
+					</section>
+					
 				</section>
 
 				<section>
-					<h2>Code Runner</h2>
+					<section data-auto-animate="">
+						<h2>Code Runner</h2>
+						<div class="fragment" data-fragment-index="1">
+							<p class="italic">Click the Buttons to Change the Color</p>
+							<div class="grid grid-cols-5">
+								<div class="grid grid-cols-1 col-span-1 col-start-2 mb-4 gap-y-12">
+									<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Red</button>
+									<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Green</button>
+									<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Blue</button>
+								</div>
+								<div class="col-span-3 r-stack">
+									<button class="w-64 h-64 col-span-3 m-auto bg-white border-2 border-gray-600 fragment fade-out" data-fragment-index="2"></button>
+									<div class="relative grid w-full grid-cols-1 gap-y-3 -top-2 fragment fade-in-then-out" data-fragment-index="2">
+										<pre><code class="python">set_color_to_red </code></pre>
+										<pre><code class="python">set_color_to_green</code></pre>
+										<pre><code class="python">set_color_to_blue</code></pre>
+									</div>
+									<div class="relative grid w-full grid-cols-1 gap-y-3 -top-2 fragment" data-fragment-index="4">
+										<pre><code class="python">set_color('RED')</code></pre>
+										<pre><code class="python">set_color('GREEN')</code></pre>
+										<pre><code class="python">set_color('BLUE')</code></pre>
+									</div>
+								</div>
+							</div>
+							<p class="italic fragment fade-in-then-out" data-fragment-index="2">One function per color? No thanks!</p>
+						</div>
+					</section>
+					<section data-auto-animate="">
+						<h2>Code Runner</h2>
+						<p>HTML Attribute is <code class="code left">py-[event]-code</code></p>
+						<p>Value is a <span class="font-semibold">string of Python to evaluate</span></p>
+						<div class="fragment">
+							<pre><code class="text-3xl html" data-trim>
+								<button py-click-code="set_color('RED')">
+									Red
+								</button>
+							</code></pre>
+							<pre><code class="text-3xl python" data-trim>
+										<py-script>
+											def set_color(color):
+												...
+										</py-script>
+							</code></pre>
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Code Runner</h2>
+						<p>MORE EXAMPLES?? XXXXXXXXXXXXXXXXXXX</p>
+					</section>
 				</section>
 
 				<section>
-					<h2><code class="code">@when</code> decorator</h2>
+					<section data-auto-animate>
+						<h2><code class="code">@when</code> decorator</h2>
+					</section>
+					<section data-auto-animate>
+						<h2><code class="code">@when</code> decorator</h2>
+						<p>Python code of previous two examples:</p>
+						<pre><code class="text-3xl python" data-trim>
+							def say_hi():
+								print("Hi there!")
+					</code></pre>
+					<pre><code class="text-3xl python" data-trim>
+						def set_color(color):
+							...
+					</code></pre>
+					<p>No indication on the Python side that these are event listeners</p>
+					</section>
+
+					<section data-auto-animate>
+						<h2><code class="code">@when</code> decorator</h2>
+						<pre><code class="text-3xl" data-trim>
+							<button id="hello-btn">Hello!</button>
+						</code></pre>
+						<pre><code class="text-3xl python" data-trim>
+							@when('click', 'hello-btn')
+							def say_hi():
+								print("Hi there!")
+					</code></pre>
+					<button>Hello!</button>
+					</section>
+					<section data-auto-animate>
+						<h2><code class="code">@when</code> decorator</h2>
+						<pre><code class="text-3xl html" data-trim>
+							<input type="text" id='my-input'>
+						</code></pre>
+						<pre><code class="text-3xl python" data-trim>
+								<py-script>
+									@when('change', 'my-input')
+									def validate(event):
+										... # XXXXXXXXXXXXXXXXXXXXXXXX
+								</py-script>
+						</code></pre>
+						<input type="text" class="p-1 border-2 border-gray-600">
+					</section>
+
 				</section>
 
 				<section>
-					<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
+					<section data-auto-animate>
+						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
+					</section>
+
+					<section data-auto-animate>
+						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
+						<pre><code class="js" data-trim>
+							pyodide.ffi.wrappers.add_event_listener(elt, event, listener)
+						</code></pre>
+						<ul>
+							<li class="text-4xl">elt: An element from the DOM</li>
+							<li class="text-4xl">event: A string representing the event type</li>
+							<li class="text-4xl">listener: the Callable</li>
+						</ul>
+						
+					</section>
+					<section data-auto-animate>
+						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
+						<pre><code class="python" data-trim>
+							<button id="my-btn">Click Me!</button>
+							
+							<py-script>
+								import js
+								from pyodide.ffi.wrappers import add_event_listener
+
+								def say_hi():
+									print("Hello!")
+
+								btn = js.document.getElementById("my-btn")
+								add_event_listener(btn, 'click', say_hi)
+								#remove_event_listener(btn, 'click', say_hi)
+							</py-script>
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<h2>Questions?</h2>
 				</section>
 
 			</div>
