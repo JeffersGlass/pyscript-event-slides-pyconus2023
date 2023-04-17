@@ -58,7 +58,7 @@
 		
 					<div class="grid grid-cols-3 h-72">
 						<div class ="r-stack">
-							<p data-fragment-index="1" class="fragment fade-out" style="line-height: 12rem;">Event Triggered</p>
+							<p data-fragment-index="1" class="fragment fade-out text-6xl" style="line-height: 6rem;">Something Happens</p>
 							<div data-fragment-index="1" class="fragment fade-in-then-out">
 								<p>click</p>
 								<p>hover</p>
@@ -73,6 +73,7 @@
 								<p>Loadprogress</p>
 								<p>Animation</p>
 								<p>DOM Mutation</p>
+								<p>Custom events</p>
 								<p>...</p>
 							</div>
 						</div>
@@ -81,9 +82,7 @@
 								<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
 							  </svg>
 						</div>
-						<div class="h-full">
-							<div style="line-height: 48rem;">function()</div>
-						</div>
+						<div class="text-5xl" style="line-height: 48rem;">Run Some Code</div>
 					</div>
 					  
 				</section>
@@ -131,7 +130,7 @@
 				</section>
 
 				<section>
-					<h2>Events Handling in HTML</h2>
+					<h2>Event Handling in HTML</h2>
 				</section>
 
 				<section>
@@ -157,15 +156,29 @@
 						<p>Callable can have 0 or 1 parameters</p>
 						<p>Callables with 1 paramter get the Event object</p>
 						<pre><code class="text-3xl html" data-trim>
-							<input type="text" py-change="validate">
+							<input type="text" py-input="validate">
 						</code></pre>
 						<pre><code class="text-3xl python" data-trim>
 								<py-script>
 									def validate(event):
-										... # XXXXXXXXXXXXXXXXXXXXXXXX
+										print(event.target)
 								</py-script>
 						</code></pre>
-						<input type="text" class="p-1 border-2 border-gray-600">
+					</section>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<pre><code class="text-xl html" data-trim>
+							<input type="text" py-input="validate">
+						</code></pre>
+						<pre><code class="text-xl python" data-trim>
+								<py-script>
+									def validate(event):
+										if event.which == 13: #Enter key
+											print(event.target.value)
+								</py-script>
+						</code></pre>
+						<input type="text" class="p-1 border-2 border-gray-600" onkeypress="if (event.which == 13){d = document.getElementById('demo2'); demo2.innerText += event.target.value + '\n'}">
+						<pre id="demo2" class="h-40 overflow-y-scroll"></pre>
 					</section>
 					<section data-auto-animate>
 						<h2>Event Listener</h2>
@@ -256,15 +269,11 @@
 				</section>
 
 				<section>
-					<h2>Events Handling in Python</h2>
-				</section>
-
-				<section>
 					<section data-auto-animate>
-						<h2><code class="code">@when</code> decorator</h2>
+						<h2>Event Handling in Python</h2>
 					</section>
 					<section data-auto-animate>
-						<h2><code class="code">@when</code> decorator</h2>
+						<h2>Event Handling in Python</h2>
 						<p>Python code of previous two examples:</p>
 						<pre><code class="text-3xl python" data-trim>
 							def say_hi():
@@ -281,15 +290,18 @@
 						<h2><code class="code">@when</code> decorator</h2>
 						<p>Takes the name of an Event and an Element id</p>
 						<code id="when" class="text-4xl language-python code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">when</span>(<span class="hljs-params">eventName:<span class="hljs-built_in">str</span>, <span class="hljs-built_in">id</span>: <span class="hljs-built_in">str</span></span>)</code>
-						<pre><code class="text-3xl" data-trim>
-							<button id="hello-btn">Hello!</button>
-						</code></pre>
-						<pre><code class="text-3xl python" data-trim>
-							@when('click', 'hello-btn')
-							def say_hi():
-								print("Hi there!")
-					</code></pre>
-					<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Hello!</button>
+						<div class="fragment">
+							<pre><code class="text-3xl" data-trim>
+								<button id="hello-btn">Hello!</button>
+							</code></pre>
+							<pre><code class="text-3xl python" data-trim>
+								@when('click', 'hello-btn')
+								def say_hi():
+									print("Hi there!")
+												</code></pre>
+							<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Hello!</button>
+						</div>
+					
 					</section>
 					<section data-auto-animate>
 						<h2><code class="code">@when</code> decorator</h2>
@@ -309,15 +321,19 @@
 				</section>
 
 				<section>
+					<section>
+						<h2>Pyodide API</h2>
+						<p>Manually attaching event listeners</p>
+					</section>
 					<section data-auto-animate>
 						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
 					</section>
 
 					<section data-auto-animate>
 						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
-						<pre><code class="js" data-trim>
-							pyodide.ffi.wrappers.add_event_listener(elt, event, listener)
-						</code></pre>
+						<code class="text-2xl code js hljs language-javascript" data-trim="">pyodide.<span class="hljs-property">ffi</span>.<span class="hljs-property">wrappers</span>.<span class="hljs-title function_">add_event_listener</span>(elt, event, listener)</code>
+						<code class="text-2xl code js hljs language-javascript" data-trim="">pyodide.<span class="hljs-property">ffi</span>.<span class="hljs-property">wrappers</span>.<span class="hljs-title function_">remove_event_listener</span>(elt, event, listener)</code>
+						<div class="h-12"></div>
 						<ul>
 							<li class="text-4xl">elt: An element from the DOM</li>
 							<li class="text-4xl">event: A string representing the event type</li>
@@ -340,6 +356,31 @@
 								btn = js.document.getElementById("my-btn")
 								add_event_listener(btn, 'click', say_hi)
 								#remove_event_listener(btn, 'click', say_hi)
+							</py-script>
+						</code></pre>
+					</section>
+					<section data-auto-animate>
+						<h2 style="text-decoration: none;"><code class="code">create_proxy</code></h2>
+						<code class="text-2xl code hljs language-routeros">pyodide.ffi.create_proxy(obj, /, *, <span class="hljs-attribute">capture_this</span>=<span class="hljs-literal">False</span>)</code>
+						<div class="h-6"></div>
+						<ul>
+							<li class="text-3xl">obj - any Python objected</li>
+							<li class="text-3xl">capture_this - if Callable, should <code>this</code> be passed as first argument</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h2 style="text-decoration: none;"><code class="code">create_proxy</code></h2>
+						<pre><code class="python" data-trim>
+							<button id="my-btn">Click Me!</button>
+							<py-script>
+								import js
+								from pyodide.ffi import create_proxy
+
+								def say_goodbye(*args):
+									print("Bye!")
+
+								btn = js.document.getElementById("my-btn")
+								btn.onclick=create_proxy(say_goodbye)
 							</py-script>
 						</code></pre>
 					</section>
@@ -366,10 +407,6 @@
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
-		</script>
-		<script>
-			const el = document.getElementById("when")
-			RevealHighlight.hljs.highlightElement(el)
 		</script>
 	</body>
 </html>
