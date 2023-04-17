@@ -9,7 +9,10 @@
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/serif.css">
+
+		<!--User Added Snippets:-->
 		<link href="css/tailwind2.min.css" rel="stylesheet">
+
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/vs.css">
@@ -52,15 +55,50 @@
 			<div class="slides">
 				<section><h1>Events</h1></section>
 				<section>
+		
+					<div class="grid grid-cols-3 h-72">
+						<div class ="r-stack">
+							<p data-fragment-index="1" class="fragment fade-out" style="line-height: 12rem;">Event Triggered</p>
+							<div data-fragment-index="1" class="fragment fade-in-then-out">
+								<p>click</p>
+								<p>hover</p>
+								<p>focus</p>
+								<p>keyboard</p>
+								<p>change</p>
+								<p>submit</p>
+								<p>GamepadInput</p>
+								<p>...</p>
+							</div>
+							<div data-fragment-index="2" class="fragment" style="line-height: 12rem;">
+								<p>Loadprogress</p>
+								<p>Animation</p>
+								<p>DOM Mutation</p>
+								<p>...</p>
+							</div>
+						</div>
+						<div class="h-full">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-48 h-full align-middle">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+							  </svg>
+						</div>
+						<div class="h-full">
+							<div style="line-height: 48rem;">function()</div>
+						</div>
+					</div>
+					  
+				</section>
+				<section>
 					<div class="grid grid-cols-1 mx-12 space-y-8">
-						<button class="p-6 text-6xl bg-gray-100 border-2 border-gray-600 rounded-lg">Hover Over Me</button>
-						<br><input type="text" placeholder="Type in Me" class="p-2 border-2 border-gray-600 rounded-lg">
+						<button class="p-6 text-6xl bg-gray-100 border-2 border-gray-600 rounded-lg" onmouseover="console.log(event);d = document.getElementById('demo1'); d.innerHTML += 'Hover event\n'; d.scrollTop = d.scrollHeight" onclick="console.log(event);d = document.getElementById('demo1'); d.innerHTML += 'Click event\n'; d.scrollTop = d.scrollHeight">Click/Hover Me</button>
+						<br><input type="text" placeholder="Type in Me" class="p-2 border-2 border-gray-600 rounded-lg" oninput="d = document.getElementById('demo1'); d.innerHTML += (event.target.value + '\n'); d.scrollTop = d.scrollHeight">
+						<span class="text-6xl">
+							<pre id="demo1" class="h-60 overflow-y-scroll"></pre>
+						</span>
 					</div>
 				</section>
 
-				<section class="left">
+				<!-- <section class="left">
 					<h2>Events</h2>
-					<p>User and page actions emit Event objects</p>
 					<div class="twocolumn">
 						<div class="fragment">
 							<p>User-triggered Events</p>
@@ -68,6 +106,7 @@
 								<li>click</li>
 								<li>hover</li>
 								<li>focus</li>
+								<li>keyboard</li>
 								<li>change</li>
 								<li>submit</li>
 								<li>GamepadInput</li>
@@ -75,7 +114,7 @@
 							</ul>
 						</div>
 						<div class="fragment">
-							<p>"Lifecycle" Events</p>
+							<p>More Events</p>
 							<ul>
 								<li>Loadprogress</li>
 								<li>Animation</li>
@@ -84,11 +123,15 @@
 							</ul>
 						</div>
 					</div>
-				</section>
+				</section> -->
 
 				<section>
 					<h2 class="">4 Ways To React to Events in PyScript</h2>
-					<p class="space-x-12"><span class="">2 in HTML</span><span class="">2 in Python</span></p>
+					<p class="space-x-12"><br><span class="text-6xl">2 in HTML</span><span class="text-6xl">2 in Python</span></p>
+				</section>
+
+				<section>
+					<h2>Events Handling in HTML</h2>
 				</section>
 
 				<section>
@@ -112,7 +155,7 @@
 					<section data-auto-animate>
 						<h2>Event Listener</h2>
 						<p>Callable can have 0 or 1 parameters</p>
-						<p>If the Callable takes 1 parameter, it will be passed the Event object</p>
+						<p>Callables with 1 paramter get the Event object</p>
 						<pre><code class="text-3xl html" data-trim>
 							<input type="text" py-change="validate">
 						</code></pre>
@@ -145,14 +188,19 @@
 								<div class="col-span-3 r-stack">
 									<button class="w-64 h-64 col-span-3 m-auto bg-white border-2 border-gray-600 fragment fade-out" data-fragment-index="2"></button>
 									<div class="relative grid w-full grid-cols-1 gap-y-3 -top-2 fragment fade-in-then-out" data-fragment-index="2">
-										<pre><code class="python">set_color_to_red </code></pre>
-										<pre><code class="python">set_color_to_green</code></pre>
-										<pre><code class="python">set_color_to_blue</code></pre>
+										<pre><code class="python">py-click="set_color_to_red"</code></pre>
+										<pre><code class="python">py-click="set_color_to_green"</code></pre>
+										<pre><code class="python">py-click="set_color_to_blue"</code></pre>
 									</div>
-									<div class="relative grid w-full grid-cols-1 gap-y-3 -top-2 fragment" data-fragment-index="4">
-										<pre><code class="python">set_color('RED')</code></pre>
-										<pre><code class="python">set_color('GREEN')</code></pre>
-										<pre><code class="python">set_color('BLUE')</code></pre>
+									<div class="relative grid w-full grid-cols-1 gap-y-3 -top-2 fragment fade-in-then-out" data-fragment-index="4">
+										<pre><code class="python">set_color('RED') # somehow?</code></pre>
+										<pre><code class="python">set_color('GREEN') # somehow? </code></pre>
+										<pre><code class="python">set_color('BLUE') # somehow?</code></pre>
+									</div>
+									<div class="relative grid w-full grid-cols-1 gap-y-3 -top-2 fragment" data-fragment-index="5">
+										<pre><code class="python">py-click-code="set_color('RED')"</code></pre>
+										<pre><code class="python">py-click-code="set_color('GREEN')"</code></pre>
+										<pre><code class="python">py-click-code="set_color('BLUE')"</code></pre>
 									</div>
 								</div>
 							</div>
@@ -182,6 +230,34 @@
 						<p>MORE EXAMPLES?? XXXXXXXXXXXXXXXXXXX</p>
 					</section>
 				</section>
+				<section>
+					<h2>Events in HTML:</h2>
+					<div class="grid grid-cols-2 grid-rows-4 grid-flow-col">
+						<h3 class="underline" >Event Listener</h3>
+						<p>HTML Attribute is<br> <code class="code left">py-[event]</code></p>
+						<p>Value is the<br><span class="font-semibold">name of a Callable</span></p>
+						<span class="text-3xl">
+							<pre><code data-trim class="html">
+							<button py-click="say_hi">
+								Say Hello!
+							</button></code></pre>
+						</span>
+
+						<h3 class="underline">Code Runner</h3>
+						<p>HTML Attribute is<br><code class="code left">py-[event]-code</code></p>
+						<p>Value is a <br><span class="font-semibold">string of Python to evaluate</span></p>
+						<span style="font-size: 1.6rem/* 30px */; line-height: 2rem/* 36px */;">
+							<pre><code data-trim class="html">
+							<button py-click-code="set_color('RED')">
+								Set Color to Red
+							</button></code></pre>
+						</span>
+					</div>
+				</section>
+
+				<section>
+					<h2>Events Handling in Python</h2>
+				</section>
 
 				<section>
 					<section data-auto-animate>
@@ -203,6 +279,7 @@
 
 					<section data-auto-animate>
 						<h2><code class="code">@when</code> decorator</h2>
+						<p><code id="when">@when(eventName:str, id: str)</code></p>
 						<pre><code class="text-3xl" data-trim>
 							<button id="hello-btn">Hello!</button>
 						</code></pre>
@@ -211,7 +288,7 @@
 							def say_hi():
 								print("Hi there!")
 					</code></pre>
-					<button>Hello!</button>
+					<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Hello!</button>
 					</section>
 					<section data-auto-animate>
 						<h2><code class="code">@when</code> decorator</h2>
@@ -288,6 +365,10 @@
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
+		</script>
+		<script>
+			const el = document.getElementById("when")
+			RevealHighlight.hljs.highlightElement(el)
 		</script>
 	</body>
 </html>

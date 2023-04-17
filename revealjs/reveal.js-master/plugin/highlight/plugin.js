@@ -64,6 +64,8 @@ const Plugin = {
 
 		} );
 
+		
+
 		// Triggers a callback function before we trigger highlighting
 		if( typeof config.beforeHighlight === 'function' ) {
 			config.beforeHighlight( hljs );
