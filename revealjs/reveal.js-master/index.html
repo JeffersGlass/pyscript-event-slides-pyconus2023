@@ -27,6 +27,11 @@
 				text-align: left;
 			}
 
+			.right{
+				right: 5%;
+				text-align: right;
+			}
+
 			section h2 {
 				text-decoration: underline;
 			}
@@ -55,10 +60,9 @@
 			<div class="slides">
 				<section><h1>Events</h1></section>
 				<section>
-		
 					<div class="grid grid-cols-3 h-72">
 						<div class ="r-stack">
-							<p data-fragment-index="1" class="fragment fade-out text-6xl" style="line-height: 6rem;">Something Happens</p>
+							<p data-fragment-index="1" class="text-6xl fragment fade-out" style="line-height: 6rem;">Something Happens</p>
 							<div data-fragment-index="1" class="fragment fade-in-then-out">
 								<p>click</p>
 								<p>hover</p>
@@ -72,26 +76,28 @@
 							<div data-fragment-index="2" class="fragment" style="line-height: 12rem;">
 								<p>Loadprogress</p>
 								<p>Animation</p>
-								<p>DOM Mutation</p>
+								<p>Local Storage access</p>
 								<p>Custom events</p>
 								<p>...</p>
 							</div>
 						</div>
-						<div class="h-full">
+						<div class="">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline w-48 h-full align-middle">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
 							  </svg>
 						</div>
-						<div class="text-5xl" style="line-height: 48rem;">Run Some Code</div>
+						<div class="h-full">
+							<div class="text-6xl" style="line-height: 48rem;">Run Code</div>
+						</div>
 					</div>
 					  
 				</section>
 				<section>
 					<div class="grid grid-cols-1 mx-12 space-y-8">
-						<button class="p-6 text-6xl bg-gray-100 border-2 border-gray-600 rounded-lg" onmouseover="console.log(event);d = document.getElementById('demo1'); d.innerHTML += 'Hover event\n'; d.scrollTop = d.scrollHeight" onclick="console.log(event);d = document.getElementById('demo1'); d.innerHTML += 'Click event\n'; d.scrollTop = d.scrollHeight">Click/Hover Me</button>
+						<button class="p-6 text-6xl bg-gray-100 border-2 border-gray-600 rounded-lg" onmouseover="console.log(event);d = document.getElementById('demo1'); d.innerHTML += 'Hover event\n'; d.scrollTop = d.scrollHeight" onclick="console.log(event);d = document.getElementById('demo1'); d.innerHTML += 'Click event\n'; d.scrollTop = d.scrollHeight">Click/ on Me</button>
 						<br><input type="text" placeholder="Type in Me" class="p-2 border-2 border-gray-600 rounded-lg" oninput="d = document.getElementById('demo1'); d.innerHTML += (event.target.value + '\n'); d.scrollTop = d.scrollHeight">
 						<span class="text-6xl">
-							<pre id="demo1" class="h-60 overflow-y-scroll"></pre>
+							<pre id="demo1" class="overflow-y-scroll h-60"></pre>
 						</span>
 					</div>
 				</section>
@@ -130,23 +136,23 @@
 				</section>
 
 				<section>
-					<h2>Event Handling in HTML</h2>
-				</section>
-
-				<section>
+					<section data-auto-animate>
+						<h2>Event Handling in HTML #1</h2>
+						<h2>Event Listener</h2>
+					</section>
 					<section data-auto-animate>
 						<h2>Event Listener</h2>
 						<p>HTML Attribute is <code class="code left">py-[event]</code></p>
 						<p>Value is the <span class="font-semibold">name of a Callable</span></p>
 						<div class="fragment">
+							<pre><code class="text-3xl python" data-trim>
+								<py-script>
+									def say_hi():
+										print("Hi there!")
+								</py-script>
+							</code></pre>
 							<pre><code class="text-3xl" data-trim>
 								<button py-click="say_hi">Hello!</button>
-							</code></pre>
-							<pre><code class="text-3xl python" data-trim>
-									<py-script>
-										def say_hi():
-											print("Hi there!")
-									</py-script>
 							</code></pre>
 							<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Hello!</button>
 						</div>
@@ -178,7 +184,27 @@
 								</py-script>
 						</code></pre>
 						<input type="text" class="p-1 border-2 border-gray-600" onkeypress="if (event.which == 13){d = document.getElementById('demo2'); demo2.innerText += event.target.value + '\n'}">
-						<pre id="demo2" class="h-40 overflow-y-scroll"></pre>
+						<span class="text-6xl">
+							<pre id="demo2" class="h-40 overflow-y-scroll"></pre>
+						</span>
+					</section>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<p class="font-semibold">Common Event Attributes:</p><span></span>
+						<div class="relative grid grid-cols-2 gap-y-6 -left-24">
+							<div class="mr-4 right"><code class="code">target</code></div><span>element the event was dispatched to</span>
+							<div class="mr-4 right"><code class="code">timeStamp</code></div><span>time since "origin" in milliseonds</span>
+							<div class="mr-4 right"><code class="code">isTrusted</code></div><span>was event trigged by the user</span>
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<p class="font-semibold">Specific Event Attributes:</p><span></span>
+						<p>Mouse coordinates (absolute, relative to element, etc)</p>
+						<p>Which key was pressed</p>
+						<p>Data on the Clipboard</p>
+						<p>What element is CSS animating?</p>
+
 					</section>
 					<section data-auto-animate>
 						<h2>Event Listener</h2>
@@ -245,7 +271,7 @@
 				</section>
 				<section>
 					<h2>Events in HTML:</h2>
-					<div class="grid grid-cols-2 grid-rows-4 grid-flow-col">
+					<div class="grid grid-flow-col grid-cols-2 grid-rows-4">
 						<h3 class="underline" >Event Listener</h3>
 						<p>HTML Attribute is<br> <code class="code left">py-[event]</code></p>
 						<p>Value is the<br><span class="font-semibold">name of a Callable</span></p>
