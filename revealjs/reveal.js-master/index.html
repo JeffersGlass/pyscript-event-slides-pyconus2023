@@ -131,19 +131,19 @@
 				</section> -->
 
 				<section>
-					<h2 class="">4 Ways To React to Events in PyScript</h2>
-					<p class="space-x-12"><br><span class="text-6xl">2 in HTML</span><span class="text-6xl">2 in Python</span></p>
+					<h2 class="">2 Ways To React to Events in PyScript</h2>
+					<p class="space-x-12"><br><span class="text-6xl">In HTML</span><span class="text-6xl">In Python</span></p>
 				</section>
 
 				<section>
 					<section data-auto-animate>
-						<h2>Event Handling in HTML #1</h2>
-						<h2>Event Listener</h2>
+						<h2>Event Handling in HTML</h2>
+						<h2>Event Executor</h2>
 					</section>
 					<section data-auto-animate>
-						<h2>Event Listener</h2>
+						<h2>Event Executor</h2>
 						<p>HTML Attribute is <code class="code left">py-[event]</code></p>
-						<p>Value is the <span class="font-semibold">name of a Callable</span></p>
+						<p>Value is the <span class="font-semibold">string of executable code</span></p>
 						<div class="fragment">
 							<pre><code class="text-3xl python" data-trim>
 								<py-script>
@@ -152,12 +152,42 @@
 								</py-script>
 							</code></pre>
 							<pre><code class="text-3xl" data-trim>
-								<button py-click="say_hi">Hello!</button>
+								<button py-click="say_hi()">Hello!</button>
 							</code></pre>
 							<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Hello!</button>
 						</div>
 					</section>
 					<section data-auto-animate>
+						<h2>Event Executor</h2>
+						<pre><code class="text-2xl html"><script type="text/template"><input type="text"
+py-focus="from myModule import func; func('hello')"></script>
+						</code></pre>
+					</section>
+					<section data-auto-animate>
+						<h2>Event Executor</h2>
+						<pre><code class="text-2xl html"><script type="text/template"><input type="text"
+id='inp' py-input="setColor('Green') if validate() 
+else setColor('RED')"></script>
+						</code></pre>
+						<pre><code class="text-2xl python" data-trim>
+								<py-script>
+									import js
+
+									inputElement = js.document.getElementById('inp')
+									def validate():
+										return 'py' in inputElement.value.lower()
+									
+									setColor(color):
+										inputElement.style.color = color
+								</py-script>
+						</code></pre>
+					</section>
+					<section>
+						MORE EXAMPLES?? XXXXXXXXXXXX
+					</section>
+					
+					<!-- Remainder of event-listener syntax with passed events-->
+					<!-- <section data-auto-animate>
 						<h2>Event Listener</h2>
 						<p>Callable can have 0 or 1 parameters</p>
 						<p>Callables with 1 paramter get the Event object</p>
@@ -170,8 +200,9 @@
 										print(event.target)
 								</py-script>
 						</code></pre>
-					</section>
-					<section data-auto-animate>
+					</section> -->
+					
+					<!-- <section data-auto-animate>
 						<h2>Event Listener</h2>
 						<pre><code class="text-xl html" data-trim>
 							<input type="text" py-input="validate">
@@ -209,11 +240,12 @@
 					<section data-auto-animate>
 						<h2>Event Listener</h2>
 						<p>XXXXXXXXXXXX MORE EXAMPLES??</p>
-					</section>
+					</section> -->
 					
 				</section>
 
-				<section>
+				<!-- Code Runner -->
+				<!-- <section>
 					<section data-auto-animate="">
 						<h2>Code Runner</h2>
 						<div class="fragment" data-fragment-index="1">
@@ -268,8 +300,9 @@
 						<h2>Code Runner</h2>
 						<p>MORE EXAMPLES?? XXXXXXXXXXXXXXXXXXX</p>
 					</section>
-				</section>
-				<section>
+				</section> -->
+				<!-- Event Listener / Code Runner Summary-->
+				<!-- <section>
 					<h2>Events in HTML:</h2>
 					<div class="grid grid-flow-col grid-cols-2 grid-rows-4">
 						<h3 class="underline" >Event Listener</h3>
@@ -292,9 +325,10 @@
 							</button></code></pre>
 						</span>
 					</div>
-				</section>
+				</section> -->
 
-				<section>
+				<!-- @When Decorator -->
+				<!-- <section>
 					<section data-auto-animate>
 						<h2>Event Handling in Python</h2>
 					</section>
@@ -344,18 +378,97 @@
 						<input type="text" class="p-1 border-2 border-gray-600">
 					</section>
 
-				</section>
+				</section> -->
 
 				<section>
 					<section>
-						<h2>Pyodide API</h2>
-						<p>Manually attaching event listeners</p>
+						<h2>Event Handling in Python</h2>
+						<h3>Access to Event Objects</h3>
 					</section>
 					<section data-auto-animate>
-						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
+						<h2>Event Listener</h2>
+						<div class="grid grid-cols-3 h-72">
+							<div class ="">
+								<p class="text-6xl" style="line-height: 6rem;">Something Happens</p>
+							</div>
+							<div class="">
+								<br>
+								<svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="-6 0 36 24" stroke-width="1.5" stroke="red" class="inline w-72">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+									<text x="-3" y="05" style="font-size: 0.35rem; line-height: .5rem; stroke-width: .00rem; fill: red ">Event Object</text>
+								  </svg>
+							</div>
+							<div class="">
+								<div class="text-6xl" style="line-height: 6rem;"><br>Run Code</div>
+							</div>
+						</div>
+						  
+					</section>
+					<section data-auto-animate="">
+						<h2>Event Listener</h2>
+						<p class="mb-0 text-5xl">"Common" Events</p>
+						<div class="grid grid-flow-col space-y-2 text-5xl" style="grid-template-rows: repeat(7, minmax(0, 1fr)); " data-fragment-index="1">
+							<span>ClipboardEvent</span>
+							<span>DeviceOrientationEvent</span>
+							<span>DragEvent</span>
+							<span>FetchEvent</span>
+							<span>FocusEvent</span>
+							<span>FormDataEvent</span>
+							<span>GamepadEvent</span>
+							<span>KeyboardEvent</span>
+							<span>MouseEvent</span>
+							<span>PageTransitionEvent</span>
+							<span>PointerEvent</span>
+							<span>SubmitEvent</span>
+							<span>TouchEvent</span>
+							<span>WheelEvent</span>
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<p class="font-semibold">Common Event Attributes:</p><span></span>
+						<div class="relative grid grid-cols-2 gap-y-6 -left-24">
+							<div class="mr-4 right"><code class="code">target</code></div><span>element the event was dispatched to</span>
+							<div class="mr-4 right"><code class="code">timeStamp</code></div><span>time since "origin" in milliseonds</span>
+							<div class="mr-4 right"><code class="code">isTrusted</code></div><span>was event trigged by the user</span>
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<p class="font-semibold">Specific Event Attributes: <code class="code">KeyboardEvent</code></p><span></span>
+						<div class="relative grid grid-cols-2 gap-y-6 -left-24">
+							<div class="mr-4 right"><code class="code">keyCode</code></div><span>index of which key pressed</span>
+							<div class="mr-4 right"><code class="code">ctrlKey</code> <code class="code">metaKey</code> <code class="code">altKey</code> <code class="code">shiftKey</code></div><span>Modifier Keys</span>
+							<div class="mr-4 right"><code class="code">repeat</code></div><span>Is the key automatically repeating</span>
+						</div>
+					</section>
+					
+					<!-- <section data-auto-animate>
+						<h2>Event Listener</h2>
+						<p class="font-semibold">Specific Event Attributes:</p><span></span>
+						<p>Mouse coordinates (absolute, relative to element, etc)</p>
+						<p>Which key was pressed</p>
+						<p>Data on the Clipboard</p>
+						<p>What element is CSS animating?</p>
+
+					</section>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<p>XXXXXXXXXXXX MORE EXAMPLES??</p>
+					</section> -->
+					</section>
+					<section>
+
+					<section>
+						<h2>Pyodide API</h2>
+						<div class="">
+							<h3 style="text-decoration: none;" ><code class="code">add_event_listener</code></h3>
+							<p>Attaches an event listener to an element</p>
+						</div>
 					</section>
 
 					<section data-auto-animate>
+						<h2>Event Listener</h2>
 						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
 						<code class="text-2xl code js hljs language-javascript" data-trim="">pyodide.<span class="hljs-property">ffi</span>.<span class="hljs-property">wrappers</span>.<span class="hljs-title function_">add_event_listener</span>(elt, event, listener)</code>
 						<code class="text-2xl code js hljs language-javascript" data-trim="">pyodide.<span class="hljs-property">ffi</span>.<span class="hljs-property">wrappers</span>.<span class="hljs-title function_">remove_event_listener</span>(elt, event, listener)</code>
@@ -368,23 +481,51 @@
 						
 					</section>
 					<section data-auto-animate>
-						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
-						<pre><code class="python" data-trim>
+						<h2>Event Listener</h2>
+						<pre><code class="text-2xl html" data-trim>
+							<input type="text" id="my-input">
+						</code></pre>
+						<pre><code class="text-2xl python" data-trim>
+								<py-script>
+									import js
+
+									def validate(event):
+										if event.keyCode == 13: #Enter key
+											print(event.target.value)
+											event.target.value = ''
+									
+									inputElement = js.document.getElementById('my-input')
+									add_event_listener(inputElement, 'input', validate)
+								</py-script>
+						</code></pre>
+						<input type="text" class="p-1 border-2 border-gray-600" onkeypress="console.log(event); if (event.keyCode == 13){d = document.getElementById('demo2'); demo2.innerText += event.target.value + '\n'; event.target.value = ''; d = demo2.scrollTop = demo2.scrollHeight}">
+						<span class="text-6xl">
+							<pre id="demo2" class="h-20 overflow-y-scroll"></pre>
+						</span>
+					</section>
+					<section data-auto-animate>
+						<h2>Event Listener</h2>
+						<pre><code class="text-2xl html" data-trim>
 							<button id="my-btn">Click Me!</button>
-							
+						</code></pre>
+						<pre><code class="text-2xl python" data-trim>
 							<py-script>
 								import js
 								from pyodide.ffi.wrappers import add_event_listener
 
-								def say_hi():
+								def say_hi(*args):
 									print("Hello!")
 
 								btn = js.document.getElementById("my-btn")
 								add_event_listener(btn, 'click', say_hi)
-								#remove_event_listener(btn, 'click', say_hi)
 							</py-script>
 						</code></pre>
+						<button class="p-6 text-5xl bg-gray-100 border-2 border-gray-600 rounded-lg" onclick="document.getElementById('demo3').innerText += 'Hello!\n'">Click Me!</button>
+						<span class="text-6xl">
+							<pre id="demo3" class="h-40 overflow-y-scroll"></pre>
+						</span>
 					</section>
+					
 					<section data-auto-animate>
 						<h2 style="text-decoration: none;"><code class="code">create_proxy</code></h2>
 						<code class="text-2xl code hljs language-routeros">pyodide.ffi.create_proxy(obj, /, *, <span class="hljs-attribute">capture_this</span>=<span class="hljs-literal">False</span>)</code>
