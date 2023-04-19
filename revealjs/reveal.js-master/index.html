@@ -415,23 +415,92 @@ Do several things
 					</section>
 					<section data-auto-animate>
 						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
-						<pre><code class="python" data-trim>
+						<pre><code class="html" data-trim>
 							<button id="my-btn">Click Me!</button>
+							</code></pre>
+						<pre><code class="python" data-trim>
 							
 							<py-script>
 								import js
 								from pyodide.ffi.wrappers import add_event_listener
 
-								def say_hi():
-									print("Hello!")
+								def say_hi(event):
+									print(f"Triggered by {event}")
 
 								btn = js.document.getElementById("my-btn")
 								add_event_listener(btn, 'click', say_hi)
 							</py-script>
 						</code></pre>
 					</section>
+					<section>
+						<pre><code class="python" data-trim>
+							
+							<py-script>
+								import js
+								from pyodide.ffi.wrappers import add_event_listener
+
+								def say_hi(event):
+									print(f"Triggered by {event}")
+
+								btn = js.document.getElementById("my-btn")
+								add_event_listener(btn, 'click', say_hi)
+							</py-script>
+						</code></pre>
+						<button class="p-6 text-6xl bg-gray-100 border-2 border-gray-600 rounded-lg" onclick="demo5 = document.getElementById('demo5'); demo5.innerText += `Triggered by ${event}\n`; demo5.scrollTop = demo5.scrollHeight">Click Me!</button>
+						<pre id="demo5" class="overflow-y-scroll h-36"></pre>
+					</section>
+					<section>
+						<pre><code class="text-xl html" data-trim>
+							<input type="text" id="my-input">
+						</code></pre>
+						<pre><code class="text-xl python" data-trim>
+								<py-script>
+									import js
+									from pyodide.ffi.wrappers import add_event_listener
+
+									def validate(event):
+										if 'py' in event.target.value: event.target.color = 'green'
+										else event.target.color = 'red'
+
+									my_input = js.document.getElementById("my-input")
+									add_event_listener(my_input, 'input', validate')')
+									
+								</py-script>
+						</code></pre>
+						<input type="text" id="demo6" class="p-2 border-2 border-gray-600 rounded-lg" oninput=" (event.target.value.includes('py') ? event.target.style.color = 'green' : event.target.style.color = 'red')">
+						
+					</section>
 				</section>
+
+				<!-- Sneak Peak -->
 				<section>
+					<section data-auto-animate>
+						<h2>XXXXX BETTER GRID</h2>
+						<div class="grid grid-cols-3">
+							<div class="grid grid-rows-3">
+								<div></div>
+								<div>HTML</div>
+								<div>Python</div>
+							</div>
+							<div>
+								<div>Execute Code</div>
+								<div>Event Executor</div>
+								<div class="italic">@when</div>
+							</div>
+							<div>
+								<div>Attach Event Listener</div>
+								<div>???</div>
+								<div><code>add_event_listener</code></div>
+							</div>
+						</div>
+					</section>
+					<section data-auto-animate>
+						
+					</section>
+				</section>
+
+				<!-- Create Proxy -->
+				<!-- <section>
 					<section data-auto-animate>
 						<h2 style="text-decoration: none;"><code class="code">create_proxy</code></h2>
 						<code class="text-2xl code hljs language-routeros">pyodide.ffi.create_proxy(obj, /, *, <span class="hljs-attribute">capture_this</span>=<span class="hljs-literal">False</span>)</code>
@@ -443,8 +512,10 @@ Do several things
 					</section>
 					<section data-auto-animate>
 						<h2 style="text-decoration: none;"><code class="code">create_proxy</code></h2>
-						<pre><code class="python" data-trim>
+						<pre><code class="html" data-trim>
 							<button id="my-btn">Click Me!</button>
+						</code></pre>
+						<pre><code class="python" data-trim></code>
 							<py-script>
 								import js
 								from pyodide.ffi import create_proxy
@@ -457,7 +528,8 @@ Do several things
 							</py-script>
 						</code></pre>
 					</section>
-				</section>
+				</section> -->
+				
 				<section>
 					<h2>Questions?</h2>
 				</section>
