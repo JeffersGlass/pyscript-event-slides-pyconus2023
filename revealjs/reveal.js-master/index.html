@@ -254,13 +254,8 @@ Do several things
 							<div class="mr-4 right"><code class="code">XXXXXX</code></div><span>is key automatically repeating</span>
 						</div>
 					</section>
-
-					<section data-auto-animate>
-						<h2>XXXX NAME??</h2>
-						<p>Using events with handlers</p>
-					</section>
 					
-				</section>
+				
 
 				<!-- Code Runner -->
 				<!-- <section>
@@ -399,25 +394,23 @@ Do several things
 
 				</section> -->
 
-				<section>
 					<section>
-						<h2>Event Handling in Python</h2>
-						<p>Manually attaching event listeners</p>
-					</section>
-					<section data-auto-animate>
-						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
+					<h2>Event Handling in Python</h2>
+						<h3 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
 					</section>
 
 					<section data-auto-animate>
-						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
-						<code class="text-2xl code js hljs language-javascript" data-trim="">pyodide.<span class="hljs-property">ffi</span>.<span class="hljs-property">wrappers</span>.<span class="hljs-title function_">add_event_listener</span>(elt, event, listener)</code>
-						<code class="text-2xl code js hljs language-javascript" data-trim="">pyodide.<span class="hljs-property">ffi</span>.<span class="hljs-property">wrappers</span>.<span class="hljs-title function_">remove_event_listener</span>(elt, event, listener)</code>
+						<code class="text-4xl code js hljs language-javascript " data-trim=""><span class="hljs-title function_">add_event_listener</span>(elt, event, listener)</code>
 						<div class="h-12"></div>
-						<ul>
-							<li class="text-4xl">elt: An element from the DOM</li>
-							<li class="text-4xl">event: A string representing the event type</li>
-							<li class="text-4xl">listener: the Callable</li>
-						</ul>
+						
+						<div class="relative grid grid-cols-2 gap-y-6 -left-24">
+							<div class="mr-4 right"><code class="code">elt</code></div><span>An element from the DOM</span>
+							<div class="mr-4 right"><code class="code">event</code></div><span>The event (string)</span>
+							<div class="mr-4 right"><code class="code">listener</code></div><span>A Callable</span>
+						</div>
+						<div class="h-12"></div>
+						<!-- <code class="text-4xl code js hljs language-javascript" data-trim=""><span class="hljs-title function_">remove_event_listener</span>(elt, event, listener)</code> -->
+						<p class="text-4xl">Import from <code class="code js hljs language-javascript" data-trim="">pyodide.<span class="hljs-property">ffi</span>.<span class="hljs-property">wrappers</span></code></p>
 						
 					</section>
 					<section data-auto-animate>
@@ -434,10 +427,11 @@ Do several things
 
 								btn = js.document.getElementById("my-btn")
 								add_event_listener(btn, 'click', say_hi)
-								#remove_event_listener(btn, 'click', say_hi)
 							</py-script>
 						</code></pre>
 					</section>
+				</section>
+				<section>
 					<section data-auto-animate>
 						<h2 style="text-decoration: none;"><code class="code">create_proxy</code></h2>
 						<code class="text-2xl code hljs language-routeros">pyodide.ffi.create_proxy(obj, /, *, <span class="hljs-attribute">capture_this</span>=<span class="hljs-literal">False</span>)</code>
