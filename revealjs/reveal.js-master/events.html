@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>PyScript Events</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -16,49 +16,23 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/vs.css">
-		<style>
-			section {
-				color: #333;
-			}
-
-
-			.left{
-				left: 5%;
-				text-align: left;
-			}
-
-			.right{
-				right: 5%;
-				text-align: right;
-			}
-
-			section h2 {
-				text-decoration: underline;
-			}
-
-			.twocolumn {
-				display: grid; 
-				grid-template-columns: repeat(2, minmax(0, 1fr)); 
-			}
-
-			.code {
-				display: inline; 
-				padding-left: 0.5rem;
-				padding-right: 0.5rem; 
-				background-color: hsl(220, 13%, 85%); 
-				font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
-				border-radius: 1rem;
-			}
-
-			.inline-code{
-				font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
-			}
-		</style>
+		<link rel="stylesheet" href="css/jstyle.css">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 				<section><h1>Events</h1></section>
+
+				<section>
+					<section>
+						<pre>
+							<code class="html code text-3xl w-full" data-trim>
+							<input type="text" id="english" py-click="trans()">
+							</code>
+						</pre>
+						<p class="italic">"Hook up the HTML to Python"</p>
+					</section>
+				</section>
 
 				<!-- Section: What are Events -->
 				<section>
@@ -191,13 +165,13 @@
 						<pre><code class="text-3xl html" data-trim>
 <script type="text/template"><button 
 	py-click="
-		from datetime import datetime;
-		print(datetime.now()) #XXXXXXXXXXXXXXXX CHECK THIS
+		import os;
+		print(os.getcwd())
 	">
 Do several things
 </button></script>
 						</code></pre>
-						<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg">Do Several Things</button>
+						<button class="p-2 bg-gray-100 border-2 border-gray-600 rounded-lg" onclick="demo4 = document.getElementById('demo4'); demo4.innerText += '/home/pyodide\n'">Do Several Things</button>
 						<span class="text-6xl">
 							<pre id="demo4" class="overflow-y-scroll h-36"></pre>
 						</span>
@@ -236,9 +210,24 @@ Do several things
 					<section data-auto-animate>
 						<h2>Event Objects</h2>
 						<h3>Event Types</h3>
-						<grid class="grid-rows-6">
-							XXXXXXX LOOKUP EVENT NAMES AGAIN
-						</grid>
+						<div class="grid grid-cols-2 gap-x-12" >
+                            <span>AnimationEvent</span>
+                            <span>ClipboardEvent</span>
+                            <span>CustomEvent</span>
+                            <span>DeviceOrientationEvent</span>
+                            <span>DragEvent</span>
+                            <span>FocusEvent</span>
+                            <span>FormDataEvent</span>
+                            <span>GamepadEvent</span>
+                            <span>InputEvent</span>
+                            <span>KeyboardEvent</span>
+                            <span>MouseEvent</span>
+                            <span>PointerEvent</span>
+                            <span>SubmitEvent</span>
+                            <span>TouchEvent</span>
+                            <span>TransitionEvent</span>
+                            <span>WheelEvent</span>
+						</div>
 					</section>
 					<section data-auto-animate>
 						<h2>Event Objects</h2>
@@ -255,8 +244,8 @@ Do several things
 						<div class="h-12"></div>
 						<div class="relative grid grid-cols-2 gap-y-6 -left-24">
 							<div class="mr-4 right"><code class="code">keycode</code></div><span>index of key that was pressed</span>
-							<div class="mr-4 right"><code class="code">XXXXXX</code></div><span>were modifier keys pressed</span>
-							<div class="mr-4 right"><code class="code">XXXXXX</code></div><span>is key automatically repeating</span>
+							<div class="mr-4 right"><code class="code">altKey</code><code class="code">ctrlKey</code><br><code class="code">metaKey</code><code class="code">shiftKey</code></div><span>were modifier keys pressed</span>
+							<div class="mr-4 right"><code class="code">repeat</code></div><span>is key automatically repeating</span>
 						</div>
 					</section>
 					
@@ -420,6 +409,7 @@ Do several things
 					</section>
 					<section data-auto-animate>
 						<h2 style="text-decoration: none;"><code class="code">add_event_listener</code></h2>
+						<p class="text-4xl font-semibold">https://tinyurl.com/addeventlistener</p>
 						<pre><code class="html" data-trim>
 							<button id="my-btn">Click Me!</button>
 							</code></pre>
@@ -438,8 +428,8 @@ Do several things
 						</code></pre>
 					</section>
 					<section>
+						<p class="text-4xl font-semibold">https://tinyurl.com/addeventlistener</p>
 						<pre><code class="python" data-trim>
-							
 							<py-script>
 								import js
 								from pyodide.ffi.wrappers import add_event_listener
@@ -455,6 +445,7 @@ Do several things
 						<pre id="demo5" class="overflow-y-scroll h-36"></pre>
 					</section>
 					<section>
+						<p class="text-4xl font-semibold">https://tinyurl.com/pyconvalidate</p>
 						<pre><code class="text-xl html" data-trim>
 							<input type="text" id="my-input">
 						</code></pre>
@@ -464,11 +455,11 @@ Do several things
 									from pyodide.ffi.wrappers import add_event_listener
 
 									def validate(event):
-										if 'py' in event.target.value: event.target.color = 'green'
-										else event.target.color = 'red'
+										if 'py' in event.target.value: event.target.style.color = 'green'
+										else: event.target.style.color = 'red'
 
 									my_input = js.document.getElementById("my-input")
-									add_event_listener(my_input, 'input', validate')')
+									add_event_listener(my_input, 'input', validate')'
 									
 								</py-script>
 						</code></pre>
@@ -497,10 +488,31 @@ Do several things
 						<h2>What's Next</h2>
 					</section>
 					<section data-auto-animate>
+						<pre><code data-trim class="html text-3xl">
+						<div id="my-div"></div>
+						</code></pre>
+						<pre><code class="html text-3xl" data-trim>
+						<py-script>
+							def foo(event):
+								...
+							
+							import js
+							div = js.document.getElementById("btn")
+							add_event_listener(div, 'focus', foo)
+						</py-script>
+						</code></pre>
+						<span class="fragment">
+							<pre><code class="text-3xl python" data-trim>
+								@when('my-div', 'focus')
+								def foo():
+									...
+								</code></pre>
+						</span>
+					</section>
+					<section data-auto-animate>
 						<h2><code class="code">@when</code> decorator</h2>
 						<code id="when" class="text-5xl language-python code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">when</span>(<span class="hljs-params">eventName:<span class="hljs-built_in">str</span>, <span class="hljs-built_in">id</span>: <span class="hljs-built_in">str</span></span>)</code>
 						<div class="fragment">
-							<p>Cleaner than <code class="code">add_event_listener</code></p>
 							<p>Takes the name of an Event and an Element id</p>
 						</div>
 						<div class="fragment">
@@ -513,12 +525,22 @@ Do several things
 									print("Hi there!")
 								</code></pre>
 						</div>
-						<section>
-							XXXXXX DIAGRAM - Py-[event] becomes py-[event] and py-[event]-code
-						</section>
 					</section>
 					<section>
-						XXXXXX DIAGRAM - Py-[event] becomes py-[event] and py-[event]-code
+						<h2 class="mb-0">What's Next</h2>
+						<div class="r-stack">
+							<img src="split.svg" class="fragment fade-out" data-fragment-index="1">
+							<div class=" fragment w-full" data-fragment-index="1">
+								<h4 class="underline mb-0">Event Listener</h4>
+								<pre><code class="html text-3xl" data-trim>
+									<button py-click="say_hi"></button>
+								</code></pre>
+								<h4 class="underline mb-0">Code Runner</h4>
+								<pre><code class="html text-2xl" data-trim>
+									<button py-click-code="set_color('green')"></button>
+								</code></pre>
+							</div>
+						</div>
 					</section>
 				</section>
 				
